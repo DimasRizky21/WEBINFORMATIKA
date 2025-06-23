@@ -54,7 +54,10 @@
         </ul>
     </nav>
     <h1>Data Mahasiswa</h1>
-
+    <a href="tambahdata.php">
+        <button style="background-color: green; cursor:pointer; margin-bottom:2px;">
+            Tambah Data
+        </button></a>
     <table border="1" cellspacing="0" cellpadding="10px">
         <tr>
             <th>No</th>
@@ -74,6 +77,10 @@
             <td><?= $mhs["nim"]; ?> </td>
             <td><?= $mhs["jurusan"]; ?> </td>
             <td><?= $mhs["alamat"]; ?> </td>
+            <td>
+                <a href="hapusdata.php/?id=<?php $mhs["id"] ?>"> Hapus</a>
+                <a href="ubahdata.php/?id=<?= $mhs["id"] ?>"> Edit</a>
+            </td>
         </tr>
         <?php $i++; } ?>
     </table>
