@@ -2,15 +2,22 @@
 
     require 'function.php';
 
+    $id = $_GET["id"];
+
+    $query = "SELECT * FROM mahasiswa WHERE id =$id";
+    $mhs = tampildata($query)[0];
+
+    var_dump($mhs["nama"]);
+
     if(isset($_POST['submit']))
     {
 
-        if (tambahdata($_POST) >0)
+        if (ubahdata($_POST, $id) > 0)
         {
             echo "
                 <script>
-                    alert('Data Berhasil Ditambahkan!');
-                    document.location.href='datamahasiswa.php';
+                    alert('Data Berhasil Diubah!');
+                    document.location.href='../datamahasiswa.php';
                 </script>
                 ";
         }
@@ -18,8 +25,8 @@
         {
             echo "
                 <script>
-                    alert('Data Gagal Ditambahkan!');
-                    document.location.href='datamahasiswa.php'
+                    alert('Data Gagal Diubah!');
+                    document.location.href='../datamahasiswa.php'
                 </script>
                 ";
         }
@@ -67,11 +74,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data</title>
+    <title>Ubah Data</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Tambah Data Mahasiswa</h1>
+    <h1>Ubah Data Mahasiswa</h1>
 <!-- <div class="card">
   <div class="card-body">
    <form action="" method="post" enctype ="multipart/form-data" >
@@ -100,7 +107,7 @@
     <input type="file" class="form-control" id="inputFoto" accept="image/*">
   </div>
 
-  <button type="submit" name="submit">Tambah</button>
+  <button type="submit" name="submit">Ubah</button>
 </form>
 
 
@@ -108,16 +115,17 @@
 </div>   -->
 
     <form action="" method="post" enctype ="multipart/form-data" >
+        <input type="hidden" name="id">
         <label for="name">Nama:</label>
-        <input type="text" name="nama" id="name" required/><br>
+        <input type="text" name="nama" id="name" required value="<?= $mhs["nama"]?>" /><br>
         <label for="nim">NIM:</label>
-        <input type="text" name="nim" id="nim" required /><br>
+        <input type="text" name="nim" id="nim" required value="<?= $mhs["nim"]?>"/><br>
         <label for="jurusan">Jurusan:</label>
-        <input type="text" name="jurusan" id="jurusan" required /><br>
+        <input type="text" name="jurusan" id="jurusan" required value="<?= $mhs["jurusan"]?>"/><br>
         <label for="alamat">Alamat:</label>
-        <input type="text" name="alamat" id="alamat" required /><br>
+        <input type="text" name="alamat" id="alamat" required value="<?= $mhs["alamat"]?>"/><br>
         <label>Upload Foto</label>
-        <input type="file" name="foto" /><br>
+        <input type="file" name="foto" required /><br>
         <button type="submit" name="submit">Tambah</button>
     </form>
 </body>

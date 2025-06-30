@@ -66,6 +66,7 @@
             <th>NIM</th>
             <th>Jurusan</th>
             <th>Alamat</th>
+            <th>Aksi</th>
         </tr>
         <?php 
         $i = 1;
@@ -78,7 +79,7 @@
             <td><?= $mhs["jurusan"]; ?> </td>
             <td><?= $mhs["alamat"]; ?> </td>
             <td>
-                <a href="hapusdata.php/?id=<?php $mhs["id"] ?>"> Hapus</a>
+                <a href="hapusdata.php/?id=<?= $mhs["id"] ?>"> Hapus</a>
                 <a href="ubahdata.php/?id=<?= $mhs["id"] ?>"> Edit</a>
             </td>
         </tr>
